@@ -1,7 +1,8 @@
 # mazemaker
 a simple tool for drawing mazes in python
 
-options
+Options:
+
 $ python3 -x <width> -y <height> -s <start Y> <start X> -e <exit Y> <exit X>
 
 default values are 30x20 start 2 2 exit 17 27
