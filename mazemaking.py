@@ -1,12 +1,17 @@
 #!/usr/env python3
 
-import numpy
 import random
 
 def mazeMaker(w,h,entrance,exit):
 	cursor = [entrance[0],entrance[1]]	#cursor writing rooms
 	track = [(entrance[0],entrance[1])]	#stack of rooms already written
-	maze = numpy.zeros((h,w))		#maze matrix, 0 = full, 1 = room, -1 = outer wall
+	
+	maze = []				#create matrix of 0
+	for x in range(0,h):			#maze matrix, 0 = full, 1 = room, -1 = outer wall
+		maze.append([])
+		for y in range(0,w):
+			maze[x].append(0)
+
 	maze[entrance[0]][entrance[1]] = 1
 	possibleDirections = [(1,0),(-1,0),(0,1),(0,-1)]
 	direction = random.choice(possibleDirections)
