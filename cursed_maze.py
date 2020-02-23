@@ -4,19 +4,6 @@ import curses
 import mazemaking
 #TODO from signal import signal, SIGINT
 
-def showCursedMaze(maze):
-        for i1,column in enumerate(maze):
-                for i2,row in enumerate(column):
-                        if row == 1:
-                                stdscr.addch(i1,i2," ")
-                        elif row == -1:
-                                stdscr.addch(i1,i2,"█")
-                        elif row == 2:
-                                stdscr.addch(i1,i2,"☺")
-                        elif row == 3:
-                                stdscr.addch(i1,i2,"$")
-                        else:
-                                stdscr.addch(i1,i2,"░")
 
 h = 120
 w = 30
@@ -32,7 +19,19 @@ stdscr.keypad(True)
 wpos = entrance[0]
 hpos = entrance[1]
 
-showCursedMaze(maze)
+for i1,column in enumerate(maze):
+	for i2,row in enumerate(column):
+		if row == 1:
+			stdscr.addch(i1,i2," ")
+		elif row == -1: 
+			stdscr.addch(i1,i2,"█")
+		elif row == 2:
+			stdscr.addch(i1,i2,"☺")
+		elif row == 3:
+			stdscr.addch(i1,i2,"$")
+		else:
+			stdscr.addch(i1,i2,"░")
+stdscr.refresh()
 
 while True:
 	c = stdscr.getch()
