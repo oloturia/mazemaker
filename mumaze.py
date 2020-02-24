@@ -10,14 +10,14 @@ oled = ssd1306.SSD1306_I2C(128,32,i2c)
 
 def createMaze(h=18,w=66):
 	oled.fill(0)
-	maze = mazemaking.mazeMaker(h,w,(2,2),(w-3,h-3))
+	maze = mazemaking.mazeMaker(h,w,(2,2),(w-2,h-2))
 	for x,column in enumerate(maze):
 		for y,row in enumerate(column):
-			if row == 0:
-				oled.pixel((x-1)*2,(y-1)*2,1)
-				oled.pixel((x-1)*2+1,(y-1)*2+1,1)
-				oled.pixel((x-1)*2+1,(y-1)*2,1)
-				oled.pixel((x-1)*2,(y-1)*2+1,1)
+			if row:
+				oled.pixel(x*2,y*2,1)
+				oled.pixel(x*2+1,y*2+1,1)
+				oled.pixel(x*2+1,y*2,1)
+				oled.pixel(x*2,y*2+1,1)
 
 	oled.show()
 
