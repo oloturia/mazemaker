@@ -5,12 +5,13 @@ import mazemaking
 #TODO from signal import signal, SIGINT
 
 
-h = 120
+h = 20
 w = 30
-entrance = (2,2)
-mexit = (27,117)
+entrance = (1,1)
+mexit = (28,18)
 maze = mazemaking.mazeMaker(h,w,entrance,mexit)
 
+#TODO check terminal size
 stdscr = curses.initscr()
 curses.noecho()
 curses.cbreak()
@@ -19,18 +20,16 @@ stdscr.keypad(True)
 wpos = entrance[0]
 hpos = entrance[1]
 
+
 for i1,column in enumerate(maze):
 	for i2,row in enumerate(column):
-		if row == 1:
+		if row == True:
 			stdscr.addch(i1,i2," ")
-		elif row == -1: 
-			stdscr.addch(i1,i2,"█")
-		elif row == 2:
-			stdscr.addch(i1,i2,"☺")
-		elif row == 3:
-			stdscr.addch(i1,i2,"$")
 		else:
 			stdscr.addch(i1,i2,"░")
+
+stdscr.addch(entrance[0],entrance[1],"☺")
+stdscr.addch(mexit[0],mexit[1],"$")
 stdscr.refresh()
 
 while True:
@@ -47,15 +46,13 @@ while True:
 		break
 	else:
 		continue
-	if maze[hpos+direction[0]][wpos+direction[1]] == 1:
-		maze[hpos][wpos] = 1
+	if maze[hpos+direction[0]][wpos+direction[1]] == True:
 		stdscr.addch(hpos,wpos," ")
-		maze[hpos+direction[0]][wpos+direction[1]] == 2
 		hpos = hpos + direction[0]
 		wpos = wpos + direction[1]
 		stdscr.addch(hpos,wpos,"☺")
 		stdscr.refresh()
-	elif maze[hpos+direction[0]][wpos+direction[1]] == 3:
+	if (hpos == mexit[0]) and (wpos == mexit[1]):
 		break
 
 curses.nocbreak()
