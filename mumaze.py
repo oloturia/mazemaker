@@ -13,11 +13,9 @@ def createMaze(h=16,w=64):
 	maze = mazemaking.mazeMaker(h,w,(2,2),(w-2,h-2))
 	for x,column in enumerate(maze):
 		for y,row in enumerate(column):
-			if row == False:
-				oled.pixel(x*2,y*2,1)
-				oled.pixel(x*2+1,y*2+1,1)
-				oled.pixel(x*2+1,y*2,1)
-				oled.pixel(x*2,y*2+1,1)
+			oled.pixel(x*2,y*2,not row)
+			oled.pixel(x*2+1,y*2+1,not row)
+			oled.pixel(x*2+1,y*2,not row)
+			oled.pixel(x*2,y*2+1,not row)
 
 	oled.show()
-
