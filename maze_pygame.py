@@ -23,11 +23,11 @@ class Player(pygame.sprite.Sprite):
 		y = self.rect.y
 		if keystate[pygame.K_LEFT]:
 			x -=2
-		if keystate[pygame.K_RIGHT]:
+		elif keystate[pygame.K_RIGHT]:
 			x +=2
-		if keystate[pygame.K_UP]:
+		elif keystate[pygame.K_UP]:
 			y -=2
-		if keystate[pygame.K_DOWN]:
+		elif keystate[pygame.K_DOWN]:
 			y +=2
 		if self.checkWall(self.disp,x,y):
 			self.rect.x = x
