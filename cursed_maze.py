@@ -2,7 +2,7 @@
 
 import curses
 import mazemaking
-#TODO from signal import signal, SIGINT
+import signal,sys
 
 
 h = 20
@@ -11,7 +11,6 @@ entrance = (1,1)
 mexit = (28,18)
 maze = mazemaking.mazeMaker(h,w,entrance,mexit)
 
-#TODO check terminal size
 stdscr = curses.initscr()
 curses.noecho()
 curses.cbreak()
@@ -20,13 +19,29 @@ stdscr.keypad(True)
 wpos = entrance[0]
 hpos = entrance[1]
 
+def endcurses():
+	curses.nocbreak()
+	stdscr.keypad(False)
+	curses.echo()
+	curses.endwin()
 
-for i1,column in enumerate(maze):
-	for i2,row in enumerate(column):
-		if row == True:
-			stdscr.addch(i1,i2," ")
-		else:
-			stdscr.addch(i1,i2,"░")
+def signal_handler(sig,frame):
+	endcurses()
+	quit()
+
+signal.signal(signal.SIGINT, signal_handler)
+
+try:
+	for i1,column in enumerate(maze):
+		for i2,row in enumerate(column):
+			if row == True:
+				stdscr.addch(i1,i2," ")
+			else:
+				stdscr.addch(i1,i2,"░")
+except:
+	endcurses()
+	print("Terminal window too small")
+	quit()
 
 stdscr.addch(entrance[0],entrance[1],"☺")
 stdscr.addch(mexit[0],mexit[1],"$")
@@ -55,7 +70,6 @@ while True:
 	if (hpos == mexit[0]) and (wpos == mexit[1]):
 		break
 
-curses.nocbreak()
-stdscr.keypad(False)
-curses.echo()
-curses.endwin()
+endcurses()
+
+
