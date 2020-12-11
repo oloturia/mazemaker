@@ -72,10 +72,10 @@ def showMaze(maze):				#draw maze in ascii
 if __name__=="__main__":
 	import argparse
 	parser = argparse.ArgumentParser()
-	parser.add_argument('-x','--width', metavar="width", default=30, type=int, help='width')
-	parser.add_argument('-y','--height', metavar="height", default=20, type=int, help='height')
-	parser.add_argument('-s','--start', metavar=("start Y","start X"), default=(1,1), type=int, nargs=2, help='start x y')
-	parser.add_argument('-e','--exit', metavar=("exit Y","exit X"),default=(18,28), nargs=2, type=int, help='exit x y')
+	parser.add_argument('-x', '--width', metavar='width', default=30, type=int, help='width')
+	parser.add_argument('-y', '--height', metavar='height', default=20, type=int, help='height')
+	parser.add_argument('-s', '--start', metavar=('start Y','start X'), default=(1,1), type=int, nargs=2, help='start x y')
+	parser.add_argument('-e', '--exit', metavar=('exit Y','exit X'),default=(18,28), nargs=2, type=int, help='exit x y')
 	args = parser.parse_args()	
 	maze = mazeMaker(args.width,args.height,(args.start[0],args.start[1]),(args.exit[0],args.exit[1]))
 	showMaze(maze)
