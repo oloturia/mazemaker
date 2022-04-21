@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-x','--width',metavar='width',default=30,type=int,help='width')
 parser.add_argument('-y','--height',metavar='height',default=20,type=int,help='height')
 parser.add_argument('-s','--start',metavar=('start Y','start X'),default=(1,1),type=int,nargs=2,help='start x y')
-parser.add_argument('-e','--exit',metavar=('exit Y','exit X'),default=(28,18),type=int,nargs=2,help='exit x y')
+parser.add_argument('-e','--exit',metavar=('exit Y','exit X'),default=(18,28),type=int,nargs=2,help='exit x y')
 parser.add_argument('-c','--cursor',metavar='cursor',default='@',type=str,help='cursor')
 parser.add_argument('-o','--objective',metavar='objective',default='$',type=str,help='exit token')
 
